@@ -1,6 +1,7 @@
 package com.example.springmvc.recipeproject.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 
 @Data
+@EqualsAndHashCode(exclude = {"recipe"})
 @NoArgsConstructor
 @Entity
 public class Ingredients {

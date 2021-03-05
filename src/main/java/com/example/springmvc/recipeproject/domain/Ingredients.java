@@ -15,22 +15,23 @@ import java.math.BigDecimal;
 
 @Data
 @EqualsAndHashCode(exclude = {"recipe"})
-@NoArgsConstructor
 @Entity
 public class Ingredients {
 
   @Id
-  @GeneratedValue (strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
   private String description;
   private BigDecimal amount;
 
-  @OneToOne (fetch = FetchType.EAGER)
+  @OneToOne(fetch = FetchType.EAGER)
   private UnitOfMeasure uom;
 
   @ManyToOne
   private Recipe recipe;
+
+  public Ingredients() {
+  }
 
   public Ingredients(String description, BigDecimal amount, UnitOfMeasure uom) {
     this.description = description;

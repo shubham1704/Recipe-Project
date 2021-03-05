@@ -14,13 +14,13 @@ public class IndexController {
 
   private final RecipeService recipeService;
 
-  @RequestMapping ({"/", "/index", ""})
+  @RequestMapping ({"", "/", "/index"})
   public String getIndexPage(Model model) {
+    log.debug("Getting Index page");
 
-    log.debug("Getting Index Page here");
-
-    model.addAttribute("recipes", recipeService.getRecipe());
+    model.addAttribute("recipes", recipeService.getRecipes());
 
     return "index";
   }
 }
+

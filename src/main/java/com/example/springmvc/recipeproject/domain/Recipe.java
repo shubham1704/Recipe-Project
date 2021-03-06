@@ -1,6 +1,7 @@
 package com.example.springmvc.recipeproject.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,12 +19,13 @@ import javax.persistence.OneToOne;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Recipe {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue (strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String description;
@@ -36,22 +38,22 @@ public class Recipe {
   @Lob
   private String directions;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+  @OneToMany (cascade = CascadeType.ALL, mappedBy = "recipe")
   private Set<Ingredients> ingredients = new HashSet<>();
 
   @Lob
   private Byte[] image;
 
-  @Enumerated(value = EnumType.STRING)
+  @Enumerated (value = EnumType.STRING)
   private Difficulty difficulty;
 
-  @OneToOne(cascade = CascadeType.ALL)
+  @OneToOne (cascade = CascadeType.ALL)
   private Notes notes;
 
   @ManyToMany
-  @JoinTable(name = "recipe_category",
-      joinColumns = @JoinColumn(name = "recipe_id"),
-      inverseJoinColumns = @JoinColumn(name = "category_id"))
+  @JoinTable (name = "recipe_category",
+      joinColumns = @JoinColumn (name = "recipe_id"),
+      inverseJoinColumns = @JoinColumn (name = "category_id"))
   private Set<Category> categories = new HashSet<>();
 
   public void setNotes(Notes notes) {
@@ -61,7 +63,7 @@ public class Recipe {
     }
   }
 
-  public Recipe addIngredient(Ingredients ingredient){
+  public Recipe addIngredient(Ingredients ingredient) {
     ingredient.setRecipe(this);
     this.ingredients.add(ingredient);
     return this;
